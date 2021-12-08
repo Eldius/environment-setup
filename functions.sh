@@ -12,8 +12,12 @@ function menu {
 
 function createmenu {
     arrsize=$1
+    PS3="Select your option (0 to select all): "
     select option in "${@:2}"; do
-        if [ 1 -le "$REPLY" ] && [ "$REPLY" -le $((arrsize)) ]; then
+        if [ "$REPLY" -eq 0 ]; then
+            install_all
+            exit 0
+        elif [ 1 -le "$REPLY" ] && [ "$REPLY" -le $((arrsize)) ]; then
             echo "You selected $option which is option $REPLY"
             command_exists $option
             break
