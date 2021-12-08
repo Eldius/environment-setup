@@ -13,8 +13,11 @@ A set of scripts to install tools I use in my development environment.
 ## show selection menu
 ./setup.sh
 ```
+![selection menu](docs/env_setup_menu.png "Menu")
+
 
 ```shell
 ## install all
 ./setup.sh --all
 ```
+![installing all](docs/env_setup_all.png "All")
