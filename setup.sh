@@ -1,19 +1,30 @@
 #!/bin/bash
 
-function command_exists {
-    cmd=$1
-    if ! command -v $cmd &> /dev/null
-    then
-        echo "-> $cmd could not be found... NOK"
-        ./setup_${cmd}.sh
-    else
-        echo "-> $cmd already installed... OK"
-    fi
-}
+SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
-command_exists testcmd
-command_exists pyenv
-command_exists tfenv
+. $SCRIPT_DIR/functions.sh
 
+ALL=0
+TEST=0
+
+while [[ $# -gt 0 ]] && [[ "$1" == "--"* ]] ;
+do
+    opt="$1";
+    shift;              #expose next argument
+    case "$opt" in
+        "--" ) break 2;;
+        "--all" )
+           ALL="1"; shift;;
+        "--test" )
+           TEST="1"; shift;;
+        *) echo >&2 "Invalid option: $@";;
+   esac
+done
+
+if [ "$ALL" = "1" ]; then
+    install_all
+else
+  menu
+fi
 
 . ~/.bashrc

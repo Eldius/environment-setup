@@ -10,5 +10,11 @@ A set of scripts to install tools I use in my development environment.
 ## how to use ##
 
 ```shell
+## show selection menu
 ./setup.sh
+```
+
+```shell
+## install all
+./setup.sh --all
 ```
